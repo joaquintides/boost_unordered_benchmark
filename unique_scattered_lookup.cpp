@@ -1,7 +1,7 @@
 /* Measuring lookup times of unordered associative containers
  * without duplicate elements.
  *
- * Copyright 2013 Joaquin M Lopez Munoz.
+ * Copyright 2013-2022 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -51,7 +51,7 @@ void resume_timing()
   measure_start+=std::chrono::high_resolution_clock::now()-measure_pause;
 }
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <iostream>
 #include <random>
 #include <vector>
@@ -110,6 +110,12 @@ struct scattered_unsuccessful_lookup
   }
 };
 
+template<typename T>
+boost::reference_wrapper<const T> temp_cref(T&& x)
+{
+  return boost::cref(static_cast<const T&>(x));
+}
+
 template<
   template<typename> class Tester,
   typename Container1,typename Container2,typename Container3>
@@ -128,17 +134,17 @@ void test(
 
     t=measure(boost::bind(
       Tester<Container1>(),
-      boost::cref(create<Container1>(n)),n));
+      temp_cref(create<Container1>(n)),n));
     std::cout<<n<<";"<<(t/n)*10E6;
 
     t=measure(boost::bind(
       Tester<Container2>(),
-      boost::cref(create<Container2>(n)),n));
+      temp_cref(create<Container2>(n)),n));
     std::cout<<";"<<(t/n)*10E6;
  
     t=measure(boost::bind(
       Tester<Container3>(),
-      boost::cref(create<Container3>(n)),n));
+      temp_cref(create<Container3>(n)),n));
     std::cout<<";"<<(t/n)*10E6<<std::endl;
   }
 }
