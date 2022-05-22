@@ -1,7 +1,7 @@
 /* Measuring lookup times of unordered associative containers
- * with duplicate elements.
+ * without duplicate elements.
  *
- * Copyright 2013 Joaquin M Lopez Munoz.
+ * Copyright 2013-2022 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -51,35 +51,26 @@ void resume_timing()
   measure_start+=std::chrono::high_resolution_clock::now()-measure_pause;
 }
 
-#include <boost/bind.hpp>
-#include <boost/ref.hpp>
+#include <boost/bind/bind.hpp>
 #include <iostream>
 #include <random>
 #include <vector>
 
 struct rand_seq
 {
-  rand_seq(unsigned int n,unsigned int G):mod(n/G),gen(34862){}
-
-  unsigned int operator()()
-  {
-    unsigned int m=dist(gen)%mod;
-    m^=0x9e3779b9+(m<<6)+(m>>2);
-    return m;
-  }
+  rand_seq(unsigned int):gen(34862){}
+  unsigned int operator()(){return dist(gen);}
 
 private:
-  unsigned int                                mod;
   std::uniform_int_distribution<unsigned int> dist;
   std::mt19937                                gen;
 };
 
 template<typename Container>
-Container create(unsigned int n,float Fmax,unsigned int G)
+Container create(unsigned int n)
 {
   Container s;
-  rand_seq  rnd(n,G);
-  s.max_load_factor(Fmax);
+  rand_seq  rnd(n);
   while(n--)s.insert(rnd());
   return s;
 }
@@ -89,11 +80,10 @@ struct scattered_successful_lookup
 {
   typedef unsigned int result_type;
 
-  unsigned int operator()(
-    const Container& s,unsigned int n,unsigned int G)const
+  unsigned int operator()(const Container & s,unsigned int n)const
   {
     unsigned int                                res=0;
-    rand_seq                                    rnd(n,G);
+    rand_seq                                    rnd(n);
     auto                                        end_=s.end();
     while(n--){
       if(s.find(rnd())!=end_)++res;
@@ -107,8 +97,7 @@ struct scattered_unsuccessful_lookup
 {
   typedef unsigned int result_type;
 
-  unsigned int operator()(
-    const Container& s,unsigned int n,unsigned int G)const
+  unsigned int operator()(const Container & s,unsigned int n)const
   {
     unsigned int                                res=0;
     std::uniform_int_distribution<unsigned int> dist;
@@ -121,36 +110,41 @@ struct scattered_unsuccessful_lookup
   }
 };
 
+template<typename T>
+boost::reference_wrapper<const T> temp_cref(T&& x)
+{
+  return boost::cref(static_cast<const T&>(x));
+}
+
 template<
   template<typename> class Tester,
   typename Container1,typename Container2,typename Container3>
 void test(
   const char* title,
-  const char* name1,const char* name2,const char* name3,
-  float Fmax,unsigned int G)
+  const char* name1,const char* name2,const char* name3)
 {
   unsigned int n0=10000,n1=3000000,dn=500;
   double       fdn=1.05;
 
-  std::cout<<title<<", Fmax="<<Fmax<<", G="<<G<<":"<<std::endl;
+  std::cout<<title<<":"<<std::endl;
   std::cout<<name1<<";"<<name2<<";"<<name3<<std::endl;
 
   for(unsigned int n=n0;n<=n1;n+=dn,dn=(unsigned int)(dn*fdn)){
     double t;
 
     t=measure(boost::bind(
-        Tester<Container1>(),
-        boost::cref(create<Container1>(n,Fmax,G)),n,G));
+      Tester<Container1>(),
+      temp_cref(create<Container1>(n)),n));
     std::cout<<n<<";"<<(t/n)*10E6;
 
     t=measure(boost::bind(
       Tester<Container2>(),
-      boost::cref(create<Container2>(n,Fmax,G)),n,G));
+      temp_cref(create<Container2>(n)),n));
     std::cout<<";"<<(t/n)*10E6;
  
     t=measure(boost::bind(
       Tester<Container3>(),
-      boost::cref(create<Container3>(n,Fmax,G)),n,G));
+      temp_cref(create<Container3>(n)),n));
     std::cout<<";"<<(t/n)*10E6<<std::endl;
   }
 }
@@ -168,12 +162,12 @@ int main()
   /* some stdlibs provide the discussed but finally rejected std::identity */
   using boost::multi_index::identity; 
 
-  typedef std::unordered_multiset<unsigned int>   container_t1;
-  typedef boost::unordered_multiset<unsigned int> container_t2;
+  typedef std::unordered_set<unsigned int>        container_t1;
+  typedef boost::unordered_set<unsigned int>      container_t2;
   typedef boost::multi_index_container<
     unsigned int,
     indexed_by<
-      hashed_non_unique<identity<unsigned int> >
+      hashed_unique<identity<unsigned int> >
     >
   >                                               container_t3;
 
@@ -184,10 +178,9 @@ int main()
     container_t3>
   (
     "Scattered successful lookup",
-    "std::unordered_multiset",
-    "boost::unordered_multiset",
-    "multi_index::hashed_non_unique",
-    1.0,5
+    "std::unordered_set",
+    "boost::unordered_set",
+    "multi_index::hashed_unique"
   );
 
   test<
@@ -197,35 +190,8 @@ int main()
     container_t3>
   (
     "Scattered unsuccessful lookup",
-    "std::unordered_multiset",
-    "boost::unordered_multiset",
-    "multi_index::hashed_non_unique",
-    1.0,5
-  );
-
-  test<
-    scattered_successful_lookup,
-    container_t1,
-    container_t2,
-    container_t3>
-  (
-    "Scattered successful lookup",
-    "std::unordered_multiset",
-    "boost::unordered_multiset",
-    "multi_index::hashed_non_unique",
-    5.0,5
-  );
-
-  test<
-    scattered_unsuccessful_lookup,
-    container_t1,
-    container_t2,
-    container_t3>
-  (
-    "Scattered unsuccessful lookup",
-    "std::unordered_multiset",
-    "boost::unordered_multiset",
-    "multi_index::hashed_non_unique",
-    5.0,5
+    "std::unordered_set",
+    "boost::unordered_set",
+    "multi_index::hashed_unique"
   );
 }
