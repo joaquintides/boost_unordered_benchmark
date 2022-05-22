@@ -52,7 +52,7 @@ void resume_timing()
   measure_start+=std::chrono::high_resolution_clock::now()-measure_pause;
 }
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <iostream>
 #include <random>
 #include <vector>
