@@ -15,7 +15,42 @@ jobs:
         include:
           - compiler: g++-11
             architecture: -m64
+            sourcefile: unique_running_insertion.cpp
+            compileroptions: -std=c++2a -O3 -DNDEBUG
+            outputfile: benchmark
+            os: ubuntu-20.04
+            install: g++-11
+          - compiler: g++-11
+            architecture: -m64
+            sourcefile: unique_scattered_erasure.cpp
+            compileroptions: -std=c++2a -O3 -DNDEBUG
+            outputfile: benchmark
+            os: ubuntu-20.04
+            install: g++-11
+          - compiler: g++-11
+            architecture: -m64
             sourcefile: unique_scattered_lookup.cpp
+            compileroptions: -std=c++2a -O3 -DNDEBUG
+            outputfile: benchmark
+            os: ubuntu-20.04
+            install: g++-11
+          - compiler: g++-11
+            architecture: -m64
+            sourcefile: non_unique_running_insertion.cpp
+            compileroptions: -std=c++2a -O3 -DNDEBUG
+            outputfile: benchmark
+            os: ubuntu-20.04
+            install: g++-11
+          - compiler: g++-11
+            architecture: -m64
+            sourcefile: non_unique_scattered_erasure.cpp
+            compileroptions: -std=c++2a -O3 -DNDEBUG
+            outputfile: benchmark
+            os: ubuntu-20.04
+            install: g++-11
+          - compiler: g++-11
+            architecture: -m64
+            sourcefile: non_unique_scattered_lookup.cpp
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
             os: ubuntu-20.04
@@ -60,7 +95,37 @@ jobs:
         include:
           - compiler: cl
             architecture: x64
+            sourcefile: unique_running_insertion.cpp
+            compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
+            outputfile: benchmark.exe            
+            os: windows-2019
+          - compiler: cl
+            architecture: x64
+            sourcefile: unique_scattered_erasure.cpp
+            compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
+            outputfile: benchmark.exe            
+            os: windows-2019
+          - compiler: cl
+            architecture: x64
             sourcefile: unique_scattered_lookup.cpp
+            compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
+            outputfile: benchmark.exe            
+            os: windows-2019
+          - compiler: cl
+            architecture: x64
+            sourcefile: non_unique_running_insertion.cpp
+            compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
+            outputfile: benchmark.exe            
+            os: windows-2019
+          - compiler: cl
+            architecture: x64
+            sourcefile: non_unique_scattered_erasure.cpp
+            compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
+            outputfile: benchmark.exe            
+            os: windows-2019
+          - compiler: cl
+            architecture: x64
+            sourcefile: non_unique_scattered_lookup.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
             os: windows-2019
