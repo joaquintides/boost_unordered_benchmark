@@ -1,7 +1,7 @@
 /* Measuring erasure times of unordered associative containers
  * without duplicate elements.
  *
- * Copyright 2013 Joaquin M Lopez Munoz.
+ * Copyright 2013-2022 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -26,10 +26,11 @@ double measure(F f)
   for(int i=0;i<num_trials;++i){
     int                               runs=0;
     high_resolution_clock::time_point t2;
+    volatile decltype(f())            res; /* to avoid optimizing f() away */
 
     measure_start=high_resolution_clock::now();
     do{
-      f();
+      res=f();
       ++runs;
       t2=high_resolution_clock::now();
     }while(t2-measure_start<min_time_per_trial);
