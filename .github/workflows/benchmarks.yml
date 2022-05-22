@@ -138,9 +138,11 @@ jobs:
           cd $GITHUB_WORKSPACE
           ${{matrix.compiler}} --version
           ${{matrix.compiler}} ${{matrix.sourcefile}} ${{matrix.architecture}} ${{matrix.compileroptions}} -o ${{matrix.outputfile}} -I$GITHUB_WORKSPACE/boost-root
+      - name: Set reportfile name
+        run: |
+          echo "REPORT_FILE=${{matrix.reportfileprefix}}_${{matrix.sourcefile}}.cvs" >> $GITHUB_ENV
       - name: Run benchmarks
         run: |
-          export REPORT_FILE="${{matrix.reportfileprefix}}_${{matrix.sourcefile}}.cvs"
           echo "running benchmarks and saving to "${REPORT_FILE}
           ./${{matrix.outputfile}} | tee ${REPORT_FILE}
       - name: Push benchmark results to repo
