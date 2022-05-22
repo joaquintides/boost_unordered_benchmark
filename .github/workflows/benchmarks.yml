@@ -15,9 +15,9 @@ jobs:
         include:
           - compiler: g++-11
             architecture: -m64
-            sourcefile: string.cpp
+            sourcefile: unique_scattered_lookup.cpp
             compileroptions: -std=c++2a -O3 -DNDEBUG
-            outputfile: unique_scattered_lookup.cpp
+            outputfile: benchmark
             os: ubuntu-20.04
             install: g++-11
 
