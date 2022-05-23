@@ -250,3 +250,27 @@ jobs:
           git add $env:REPORT_FILE
           git commit -m "updated benchmark results"
           git push
+
+  final:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Python2
+        uses: actions/setup-python@v2
+        with:
+          python-version: '2.7.18'
+      - name: Install Python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install openpyxl
+      - name: Run data feeding script
+        run: |
+          ./insert_data.sh
+      - name: Push modified Excel files to repo
+        run: |
+          git config --global user.name 'joaquintides'
+          git config --global user.email 'joaquintides@users.noreply.github.com'
+          git commit -am "updated Excel files"
+          git push
+          
