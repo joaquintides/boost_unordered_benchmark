@@ -149,8 +149,10 @@ jobs:
         run: |
           git config --global user.name 'joaquintides'
           git config --global user.email 'joaquintides@users.noreply.github.com'
-          git pull
           git add ${REPORT_FILE}
+          git stash -- ${REPORT_FILE}
+          git pull
+          git stash pop
           git commit -m "updated benchmark results"
           git push
        
