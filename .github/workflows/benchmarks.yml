@@ -230,23 +230,23 @@ jobs:
           echo %INCLUDE%
           ${{matrix.compiler}} ${{matrix.sourcefile}} ${{matrix.compileroptions}}
       - name: Set reportfile name
-        shell: cmd
+        shell: powershell
         run: |
-          echo "REPORT_FILE=${{matrix.reportfileprefix}}_${{matrix.sourcefile}}.csv" >> %GITHUB_ENV%
+          echo "REPORT_FILE=${{matrix.reportfileprefix}}_${{matrix.sourcefile}}.csv" >> $GITHUB_ENV
       - name: Run benchmark
         shell: powershell
         run: |
           echo "running benchmarks and saving to $REPORT_FILE"
           ./${{matrix.outputfile}} | tee $REPORT_FILE
       - name: Push benchmark results to repo
-        shell: cmd
+        shell: powershell
         run: |
           git config --global user.name 'joaquintides'
           git config --global user.email 'joaquintides@users.noreply.github.com'
-          git add %REPORT_FILE%
-          git stash -- %REPORT_FILE%
+          git add $REPORT_FILE
+          git stash -- $REPORT_FILE
           git pull
           git stash pop
-          git add %REPORT_FILE%
+          git add $REPORT_FILE
           git commit -m "updated benchmark results"
           git push
