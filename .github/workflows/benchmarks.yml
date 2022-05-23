@@ -18,7 +18,7 @@ jobs:
             sourcefile: unique_running_insertion.cpp
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: gcc
+            reportdir: gcc
             os: ubuntu-20.04
             install: g++-11
           - compiler: g++-11
@@ -26,7 +26,7 @@ jobs:
             sourcefile: unique_scattered_erasure.cpp
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: gcc
+            reportdir: gcc
             os: ubuntu-20.04
             install: g++-11
           - compiler: g++-11
@@ -34,7 +34,7 @@ jobs:
             sourcefile: unique_scattered_lookup.cpp
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: gcc
+            reportdir: gcc
             os: ubuntu-20.04
             install: g++-11
           - compiler: g++-11
@@ -42,7 +42,7 @@ jobs:
             sourcefile: non_unique_running_insertion.cpp
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: gcc
+            reportdir: gcc
             os: ubuntu-20.04
             install: g++-11
           - compiler: g++-11
@@ -50,7 +50,7 @@ jobs:
             sourcefile: non_unique_scattered_erasure.cpp
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: gcc
+            reportdir: gcc
             os: ubuntu-20.04
             install: g++-11
           - compiler: g++-11
@@ -58,7 +58,7 @@ jobs:
             sourcefile: non_unique_scattered_lookup.cpp
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: gcc
+            reportdir: gcc
             os: ubuntu-20.04
             install: g++-11
           - compiler: clang++-12
@@ -66,7 +66,7 @@ jobs:
             sourcefile: unique_running_insertion.cpp
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: clang_libcpp
+            reportdir: clang_libcpp
             os: ubuntu-20.04
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
@@ -74,7 +74,7 @@ jobs:
             sourcefile: unique_scattered_erasure.cpp
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: clang_libcpp
+            reportdir: clang_libcpp
             os: ubuntu-20.04
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
@@ -82,7 +82,7 @@ jobs:
             sourcefile: unique_scattered_lookup.cpp
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: clang_libcpp
+            reportdir: clang_libcpp
             os: ubuntu-20.04
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
@@ -90,7 +90,7 @@ jobs:
             sourcefile: non_unique_running_insertion.cpp
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: clang_libcpp
+            reportdir: clang_libcpp
             os: ubuntu-20.04
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
@@ -98,7 +98,7 @@ jobs:
             sourcefile: non_unique_scattered_erasure.cpp
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: clang_libcpp
+            reportdir: clang_libcpp
             os: ubuntu-20.04
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
@@ -106,7 +106,7 @@ jobs:
             sourcefile: non_unique_scattered_lookup.cpp
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
-            reportfileprefix: clang_libcpp
+            reportdir: clang_libcpp
             os: ubuntu-20.04
             install: libc++-12-dev libc++abi-12-dev
             
@@ -140,7 +140,7 @@ jobs:
           ${{matrix.compiler}} ${{matrix.sourcefile}} ${{matrix.architecture}} ${{matrix.compileroptions}} -o ${{matrix.outputfile}} -I$GITHUB_WORKSPACE/boost-root
       - name: Set reportfile name
         run: |
-          echo "REPORT_FILE=${{matrix.reportfileprefix}}_${{matrix.sourcefile}}.csv" >> $GITHUB_ENV
+          echo "REPORT_FILE=${{matrix.reportdir}}/${{matrix.sourcefile}}.csv" >> $GITHUB_ENV
       - name: Run benchmarks
         run: |
           echo "running benchmarks and saving to "${REPORT_FILE}
@@ -167,42 +167,42 @@ jobs:
             sourcefile: unique_running_insertion.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
-            reportfileprefix: vs
+            reportdir: vs
             os: windows-2019
           - compiler: cl
             architecture: x64
             sourcefile: unique_scattered_erasure.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
-            reportfileprefix: vs
+            reportdir: vs
             os: windows-2019
           - compiler: cl
             architecture: x64
             sourcefile: unique_scattered_lookup.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
-            reportfileprefix: vs
+            reportdir: vs
             os: windows-2019
           - compiler: cl
             architecture: x64
             sourcefile: non_unique_running_insertion.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
-            reportfileprefix: vs
+            reportdir: vs
             os: windows-2019
           - compiler: cl
             architecture: x64
             sourcefile: non_unique_scattered_erasure.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
-            reportfileprefix: vs
+            reportdir: vs
             os: windows-2019
           - compiler: cl
             architecture: x64
             sourcefile: non_unique_scattered_lookup.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
-            reportfileprefix: vs
+            reportdir: vs
             os: windows-2019
 
     runs-on: ${{matrix.os}}
@@ -232,7 +232,7 @@ jobs:
       - name: Set reportfile name
         shell: powershell
         run: |
-          echo "REPORT_FILE=${{matrix.reportfileprefix}}_${{matrix.sourcefile}}.csv" >> $env:GITHUB_ENV
+          echo "REPORT_FILE=${{matrix.reportdir}}\${{matrix.sourcefile}}.csv" >> $env:GITHUB_ENV
       - name: Run benchmark
         shell: powershell
         run: |
