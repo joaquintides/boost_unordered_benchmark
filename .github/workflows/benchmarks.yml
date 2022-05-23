@@ -252,6 +252,8 @@ jobs:
           git push
 
   final:
+    needs: [posix,windows]
+    
     runs-on: ubuntu-latest
     
     steps:
@@ -273,4 +275,3 @@ jobs:
           git config --global user.email 'joaquintides@users.noreply.github.com'
           git commit -am "updated Excel files"
           git push
-          
