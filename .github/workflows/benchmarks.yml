@@ -153,6 +153,7 @@ jobs:
           git stash -- ${REPORT_FILE}
           git pull
           git stash pop
+          git add ${REPORT_FILE}
           git commit -m "updated benchmark results"
           git push
        
