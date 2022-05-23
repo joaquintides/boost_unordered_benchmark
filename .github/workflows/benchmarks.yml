@@ -236,8 +236,8 @@ jobs:
       - name: Run benchmark
         shell: powershell
         run: |
-          echo "running benchmarks and saving to "%REPORT_FILE%
-          ./${{matrix.outputfile}} | tee %REPORT_FILE%
+          echo "running benchmarks and saving to $REPORT_FILE"
+          ./${{matrix.outputfile}} | tee $REPORT_FILE
       - name: Push benchmark results to repo
         shell: cmd
         run: |
