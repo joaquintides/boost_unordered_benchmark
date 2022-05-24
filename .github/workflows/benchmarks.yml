@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - master
+      - feature/*
 
 jobs:
   posix:
@@ -19,7 +20,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
             reportdir: gcc
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: g++-11
           - compiler: g++-11
             architecture: -m64
@@ -27,7 +29,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
             reportdir: gcc
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: g++-11
           - compiler: g++-11
             architecture: -m64
@@ -35,7 +38,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
             reportdir: gcc
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: g++-11
           - compiler: g++-11
             architecture: -m64
@@ -43,7 +47,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
             reportdir: gcc
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: g++-11
           - compiler: g++-11
             architecture: -m64
@@ -51,7 +56,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
             reportdir: gcc
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: g++-11
           - compiler: g++-11
             architecture: -m64
@@ -59,7 +65,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -DNDEBUG
             outputfile: benchmark
             reportdir: gcc
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: g++-11
           - compiler: clang++-12
             architecture: -m64
@@ -67,7 +74,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
             reportdir: clang_libcpp
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
             architecture: -m64
@@ -75,7 +83,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
             reportdir: clang_libcpp
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
             architecture: -m64
@@ -83,7 +92,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
             reportdir: clang_libcpp
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
             architecture: -m64
@@ -91,7 +101,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
             reportdir: clang_libcpp
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
             architecture: -m64
@@ -99,7 +110,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
             reportdir: clang_libcpp
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
           - compiler: clang++-12
             architecture: -m64
@@ -107,7 +119,8 @@ jobs:
             compileroptions: -std=c++2a -O3 -stdlib=libc++ -DNDEBUG
             outputfile: benchmark
             reportdir: clang_libcpp
-            os: ubuntu-20.04
+            # os: ubuntu-20.04
+            os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
             
     runs-on: ${{matrix.os}}
@@ -168,42 +181,48 @@ jobs:
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
             reportdir: vs
-            os: windows-2019
+            # os: windows-2019
+            os: [self-hosted, Windows, X64]
           - compiler: cl
             architecture: x64
             sourcefile: unique_scattered_erasure.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
             reportdir: vs
-            os: windows-2019
+            # os: windows-2019
+            os: [self-hosted, Windows, X64]
           - compiler: cl
             architecture: x64
             sourcefile: unique_scattered_lookup.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
             reportdir: vs
-            os: windows-2019
+            # os: windows-2019
+            os: [self-hosted, Windows, X64]
           - compiler: cl
             architecture: x64
             sourcefile: non_unique_running_insertion.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
             reportdir: vs
-            os: windows-2019
+            # os: windows-2019
+            os: [self-hosted, Windows, X64]
           - compiler: cl
             architecture: x64
             sourcefile: non_unique_scattered_erasure.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
             reportdir: vs
-            os: windows-2019
+            # os: windows-2019
+            os: [self-hosted, Windows, X64]
           - compiler: cl
             architecture: x64
             sourcefile: non_unique_scattered_lookup.cpp
             compileroptions: /std:c++latest /O2 /D "NDEBUG" /EHsc /MD /Fe:benchmark.exe
             outputfile: benchmark.exe            
             reportdir: vs
-            os: windows-2019
+            # os: windows-2019
+            os: [self-hosted, Windows, X64]
 
     runs-on: ${{matrix.os}}
 
@@ -225,7 +244,8 @@ jobs:
         shell: cmd
         run: |
           cd %GITHUB_WORKSPACE%
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{matrix.architecture}}
+          # call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{matrix.architecture}}
+          call "C:\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" ${{matrix.architecture}}
           set INCLUDE=%INCLUDE%;%GITHUB_WORKSPACE%\boost-root
           echo %INCLUDE%
           ${{matrix.compiler}} ${{matrix.sourcefile}} ${{matrix.compileroptions}}
