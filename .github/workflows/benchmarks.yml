@@ -23,6 +23,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: g++-11
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: g++-11
             architecture: -m64
             sourcefile: unique_scattered_erasure.cpp
@@ -32,6 +33,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: g++-11
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: g++-11
             architecture: -m64
             sourcefile: unique_scattered_lookup.cpp
@@ -41,6 +43,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: g++-11
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: g++-11
             architecture: -m64
             sourcefile: non_unique_running_insertion.cpp
@@ -50,6 +53,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: g++-11
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: g++-11
             architecture: -m64
             sourcefile: non_unique_scattered_erasure.cpp
@@ -59,6 +63,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: g++-11
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: g++-11
             architecture: -m64
             sourcefile: non_unique_scattered_lookup.cpp
@@ -68,6 +73,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: g++-11
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: clang++-12
             architecture: -m64
             sourcefile: unique_running_insertion.cpp
@@ -77,6 +83,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: clang++-12
             architecture: -m64
             sourcefile: unique_scattered_erasure.cpp
@@ -86,6 +93,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: clang++-12
             architecture: -m64
             sourcefile: unique_scattered_lookup.cpp
@@ -95,6 +103,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: clang++-12
             architecture: -m64
             sourcefile: non_unique_running_insertion.cpp
@@ -104,6 +113,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: clang++-12
             architecture: -m64
             sourcefile: non_unique_scattered_erasure.cpp
@@ -113,6 +123,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
           - compiler: clang++-12
             architecture: -m64
             sourcefile: non_unique_scattered_lookup.cpp
@@ -122,6 +133,7 @@ jobs:
             # os: ubuntu-20.04
             os: [self-hosted, linux, x64]
             install: libc++-12-dev libc++abi-12-dev
+            command: sudo cset shield --exec -- nice -n -20 sudo -u gha ./benchmark
             
     runs-on: ${{matrix.os}}
 
@@ -156,8 +168,14 @@ jobs:
           echo "REPORT_FILE=${{matrix.reportdir}}/${{matrix.sourcefile}}.csv" >> $GITHUB_ENV
       - name: Run benchmarks
         run: |
-          echo "running benchmarks and saving to "${REPORT_FILE}
-          ./${{matrix.outputfile}} | tee ${REPORT_FILE}
+          if [ -n "${{matrix.command}}" ]; then
+            echo "running benchmarks and saving to "${REPORT_FILE}
+            ${{matrix.command}} | tee ${REPORT_FILE}
+          else
+            echo "running benchmarks and saving to "${REPORT_FILE}
+            ./${{matrix.outputfile}} | tee ${REPORT_FILE}
+          fi
+
       - name: Push benchmark results to repo
         run: |
           git config --global user.name 'joaquintides'
