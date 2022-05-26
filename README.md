@@ -14,7 +14,7 @@ These benchmarks were originally devised and implemented back in 2013 in [Bannal
 * `gcc`: GCC 11 with libstdc++-v3, 64 bits
 * `clang_libcpp`: Clang 12 with libc++, 64 bits
 * `vs`: Visual Studio 2019 with (formerly known as) Dinkumware
-  stdlib implementantion, 64 bits
+  stdlib implementanion, 64 bits
 
 ### Excel file
 * `running insertion.xlsx`: 
