@@ -7,6 +7,7 @@ on:
     branches:
       - master
       - feature/*
+      - first-in-group
 
 jobs:
   posix:
@@ -149,7 +150,7 @@ jobs:
       - name: Install Boost
         run: |
           cd $GITHUB_WORKSPACE
-          git clone -b feature/fca-unordered-in-progress https://github.com/boostorg/unordered.git unordered
+          git clone -b feature/first-in-group https://github.com/cmazakas/unordered.git unordered
           git clone https://github.com/boostorg/boost.git boost-root
           cd boost-root
           git submodule update --init
@@ -250,7 +251,7 @@ jobs:
         shell: cmd
         run: |
           cd %GITHUB_WORKSPACE%
-          git clone -b feature/fca-unordered-in-progress https://github.com/boostorg/unordered.git unordered
+          git clone -b feature/first-in-group https://github.com/cmazakas/unordered.git unordered
           git clone https://github.com/boostorg/boost.git boost-root
           cd boost-root
           git submodule update --init
