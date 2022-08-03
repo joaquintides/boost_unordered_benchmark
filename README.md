@@ -35,75 +35,75 @@ These benchmarks were originally devised and implemented back in 2013 in [Bannal
 ## Graphs
 ### GCC 11 + libstdc++-v3
 #### Insertion
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/running%20insertion.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/running%20insertion.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/running%20insertion.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/running%20insertion.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/running%20insertion.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/running%20insertion.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/running%20insertion.xlsx.practice norehash.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/running%20insertion.xlsx.practice norehash non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/running%20insertion.xlsx.practice norehash non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/running%20insertion.xlsx.practice norehash.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/running%20insertion.xlsx.practice norehash non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/running%20insertion.xlsx.practice norehash non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements,<br>prior `reserve`|duplicate elements,<br>prior `reserve`|duplicate elements,<br>max load factor 5,<br>prior `reserve`|
 
 #### Erasure
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/scattered%20erasure.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/scattered%20erasure.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/scattered%20erasure.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/scattered%20erasure.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/scattered%20erasure.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/scattered%20erasure.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
 #### Successful lookup
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/scattered%20successful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/scattered%20successful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/scattered%20successful%20looukp.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/scattered%20successful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/scattered%20successful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/scattered%20successful%20looukp.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
 #### Unsuccessful lookup
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/scattered%20unsuccessful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/scattered%20unsuccessful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/gcc/scattered%20unsuccessful%20looukp.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/scattered%20unsuccessful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/scattered%20unsuccessful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/gcc/scattered%20unsuccessful%20looukp.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
 ### Clang 12 + libc++
 #### Insertion
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/running%20insertion.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/running%20insertion.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/running%20insertion.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/running%20insertion.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/running%20insertion.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/running%20insertion.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/running%20insertion.xlsx.practice norehash.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/running%20insertion.xlsx.practice norehash non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/running%20insertion.xlsx.practice norehash non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/running%20insertion.xlsx.practice norehash.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/running%20insertion.xlsx.practice norehash non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/running%20insertion.xlsx.practice norehash non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements,<br>prior `reserve`|duplicate elements,<br>prior `reserve`|duplicate elements,<br>max load factor 5,<br>prior `reserve`|
 
 #### Erasure
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/scattered%20erasure.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/scattered%20erasure.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/scattered%20erasure.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/scattered%20erasure.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/scattered%20erasure.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/scattered%20erasure.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
 #### Successful lookup
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/scattered%20successful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/scattered%20successful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/scattered%20successful%20looukp.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/scattered%20successful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/scattered%20successful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/scattered%20successful%20looukp.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
 #### Unsuccessful lookup
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/scattered%20unsuccessful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/scattered%20unsuccessful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/clang_libcpp/scattered%20unsuccessful%20looukp.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/scattered%20unsuccessful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/scattered%20unsuccessful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/clang_libcpp/scattered%20unsuccessful%20looukp.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
 ### Visual Studio 2019 + Dinkumware
 #### Insertion
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/running%20insertion.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/running%20insertion.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/running%20insertion.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/running%20insertion.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/running%20insertion.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/running%20insertion.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/running%20insertion.xlsx.practice norehash.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/running%20insertion.xlsx.practice norehash non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/running%20insertion.xlsx.practice norehash non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/running%20insertion.xlsx.practice norehash.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/running%20insertion.xlsx.practice norehash non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/running%20insertion.xlsx.practice norehash non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements,<br>prior `reserve`|duplicate elements,<br>prior `reserve`|duplicate elements,<br>max load factor 5,<br>prior `reserve`|
 
 #### Erasure
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/scattered%20erasure.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/scattered%20erasure.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/scattered%20erasure.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/scattered%20erasure.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/scattered%20erasure.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/scattered%20erasure.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
 #### Successful lookup
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/scattered%20successful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/scattered%20successful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/scattered%20successful%20looukp.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/scattered%20successful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/scattered%20successful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/scattered%20successful%20looukp.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
 
 #### Unsuccessful lookup
-|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/scattered%20unsuccessful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/scattered%20unsuccessful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group/img/vs/scattered%20unsuccessful%20looukp.xlsx.practice non-unique 5.png" width="250">|
+|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/scattered%20unsuccessful%20looukp.xlsx.practice.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/scattered%20unsuccessful%20looukp.xlsx.practice non-unique.png" width="250">|<img src="https://raw.githubusercontent.com/joaquintides/boost_unordered_benchmark/first-in-group-v2/img/vs/scattered%20unsuccessful%20looukp.xlsx.practice non-unique 5.png" width="250">|
 |:-:|:-:|:-:|
 |non-duplicate elements|duplicate elements|duplicate elements,<br>max load factor 5|
