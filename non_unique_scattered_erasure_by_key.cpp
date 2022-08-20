@@ -65,7 +65,7 @@ double measure(F f)
 {
   using namespace std::chrono;
 
-  static const int              num_trials=10;
+  static const int              num_trials=7;
   static const milliseconds     min_time_per_trial(200);
   std::array<double,num_trials> trials;
 
@@ -145,22 +145,19 @@ struct scattered_erasure
 {
   typedef void result_type;
 
-  void operator()(unsigned int n,float Fmax,unsigned int G)const
+  template<typename Vector>
+  void operator()(unsigned int n,float Fmax,unsigned int G,const Vector& vec)const
   {
     {
       pause_timing();
       Container s;
+      s.max_load_factor(Fmax);
       for (auto i = 0u; i < n; ++i) {
         auto const& w = words[i];
-        for (auto j = 0u; j < 10; ++j) {
+        for (auto j = 0u; j < G; ++j) {
           s.insert(w);
         }
       }
-
-      std::mt19937 gen(73642);
-      auto vec = std::vector<std::string>(words.begin(), words.begin() + n);
-      std::shuffle(vec.begin(), vec.begin() + n, gen);
-
       resume_timing();
       for (auto i = 0u; i < n; ++i) {
         s.erase(vec[i]);
@@ -187,14 +184,18 @@ void test(
 
   for(unsigned int n=n0;n<=n1;n+=dn,dn=(unsigned int)(dn*fdn)){
     double t;
+    std::mt19937 gen(73642);
+    auto vec = std::vector<std::string>(words.begin(), words.begin() + n);
+    std::shuffle(vec.begin(), vec.begin() + n, gen);
 
-    t=measure(boost::bind(Tester<Container1>(),n,Fmax,G));
+
+    t=measure(boost::bind(Tester<Container1>(),n,Fmax,G,boost::cref(vec)));
     std::cout<<n<<";"<<(t/n)*10E6;
 
-    t=measure(boost::bind(Tester<Container2>(),n,Fmax,G));
+    t=measure(boost::bind(Tester<Container2>(),n,Fmax,G,boost::cref(vec)));
     std::cout<<";"<<(t/n)*10E6;
  
-    t=measure(boost::bind(Tester<Container3>(),n,Fmax,G));
+    t=measure(boost::bind(Tester<Container3>(),n,Fmax,G,boost::cref(vec)));
     std::cout<<";"<<(t/n)*10E6<<std::endl;
   }
 }
