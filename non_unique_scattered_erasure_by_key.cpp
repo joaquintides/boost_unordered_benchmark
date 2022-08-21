@@ -153,15 +153,14 @@ struct scattered_erasure
       pause_timing();
       Container s;
       s.max_load_factor(Fmax);
+      unsigned int mod=n/G;
       for (auto i = 0u; i < n; ++i) {
-        auto const& w = words[i];
-        for (auto j = 0u; j < G; ++j) {
-          s.insert(w);
-        }
+        auto const& w = words[i%mod];
+        s.insert(w);
       }
       resume_timing();
-      for (auto i = 0u; i < n; ++i) {
-        s.erase(vec[i]);
+      for (const auto& w: vec) {
+        s.erase(w);
       }
       pause_timing();
     }
@@ -187,9 +186,10 @@ void test(
 
   for(unsigned int n=n0;n<=n1;n+=dn,dn=(unsigned int)(dn*fdn)){
     double t;
+    unsigned int mod=n/G;
     std::mt19937 gen(73642);
-    auto vec = std::vector<std::string>(words.begin(), words.begin() + n);
-    std::shuffle(vec.begin(), vec.begin() + n, gen);
+    auto vec = std::vector<std::string>(words.begin(), words.begin() + mod);
+    std::shuffle(vec.begin(), vec.end(), gen);
 
     t=measure(boost::bind(Tester<Container1>(),n,Fmax,G,boost::cref(vec)));
     std::cout<<n<<";"<<(t/n)*10E6;
