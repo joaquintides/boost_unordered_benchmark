@@ -129,14 +129,15 @@ static std::string make_random_word( unsigned x )
     return buffer;
 }
 
-static void init_words() {
-  words.reserve(3000000);
+static void init_words(unsigned n) {
+  words.clear();
+  words.reserve(n);
 
   boost::detail::splitmix64 rng;
 
-  for (auto i = 0; i < 3000000 / 10; ++i) {
+  for (auto i = 0u; i < n; ++i) {
     auto const word = make_random_word( rng() );
-      words.push_back( word );
+    words.push_back( word );
   }
 }
 
@@ -179,6 +180,8 @@ void test(
   unsigned int n0=100000,n1=3000000,dn=500;
   double       fdn=1.05;
 
+  init_words(n1);
+
   std::cout<<title<<", Fmax="<<Fmax<<", G="<<G<<":"<<std::endl;
   std::cout<<name1<<";"<<name2<<";"<<name3<<std::endl;
 
@@ -187,7 +190,6 @@ void test(
     std::mt19937 gen(73642);
     auto vec = std::vector<std::string>(words.begin(), words.begin() + n);
     std::shuffle(vec.begin(), vec.begin() + n, gen);
-
 
     t=measure(boost::bind(Tester<Container1>(),n,Fmax,G,boost::cref(vec)));
     std::cout<<n<<";"<<(t/n)*10E6;
@@ -221,8 +223,6 @@ int main()
       hashed_non_unique<identity<std::string>, std::hash<std::string> >
     >
   >                                                                      container_t3;
-
-  init_words();
 
   test<
     scattered_erasure,
