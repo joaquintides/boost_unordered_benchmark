@@ -176,7 +176,7 @@ void test(
   const char* name1,const char* name2,const char* name3,
   float Fmax,unsigned int G)
 {
-  unsigned int n0=100000,n1=3000000,dn=500;
+  unsigned int n0=10000,n1=3000000,dn=500;
   double       fdn=1.05;
 
   init_words(n1);
