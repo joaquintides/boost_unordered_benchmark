@@ -65,7 +65,7 @@ double measure(F f)
 {
   using namespace std::chrono;
 
-  static const int              num_trials=7;
+  static const int              num_trials=10;
   static const milliseconds     min_time_per_trial(200);
   std::array<double,num_trials> trials;
 
